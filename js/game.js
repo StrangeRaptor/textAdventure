@@ -100,7 +100,7 @@ var world = {
     DESC: 'This old manor was once a lively place... Now all that you can hear are the echoed screams of children...',
     NORTH: 'Haunted Manor Upstairs',
     EAST: 'Blocked',
-    SOUTH: 'Blocked',
+    SOUTH: 'Haunted Manor Entrance',
     WEST: 'Blocked'},
   'Haunted Manor Upstairs' : {
     DESC: 'The upstairs area is ruined. The paint on the walls are peeling and there is a faint stench of sawdust in the air... Screaming can also be heard in the distance...',
@@ -109,8 +109,19 @@ var world = {
     SOUTH: 'Haunted Manor Lobby',
     WEST: 'Blocked'
   },
+  'Haunted Manor Entrance' : {
+    DESC: 'The entrance to an old manor which has been abandoned for years. Cobwebs rest on the rusted handles of the decaying open, red wood doors. They idly sway in the frosty breeze which sweeps around the entrance...',
+    NORTH: 'Haunted Manor Lobby',
+    EAST: 'Blocked',
+    SOUTH: 'Greyman Town',
+    WEST: 'Blocked'
+  },
   'Greyman Town' : {
-
+    DESC: 'A town filled with the oddest bunch of people the world has yet to see. You notice the people of this town tend to avoid your gaze as if something about you is offputting to the citizens.',
+    NORTH: 'Haunted Manor Entrance',
+    EAST: 'Blocked',
+    SOUTH: 'Blocked',
+    WEST: 'Blocked'
   }
 };
 
@@ -299,4 +310,3 @@ processInput = function(x) {
     displayInventory();
   };
 };
-window.onLoad(alert("all code has been fully loaded. Please proceed."));
