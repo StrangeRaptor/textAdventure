@@ -227,11 +227,11 @@ displayHelp = function(x){
       if (player['PC'][4] == 1 && player['PC'][5] != 1) {
         herMessage(["(*._.) .....", "(*v.v) .....", "(*._.) .....", "(*._.) ...my name...", "(*v.v) ...it doesn't exist anymore...", "(*._.) ...it wasn't always like this though...", "(*v.v) ...that's all I'll say for now..."],5100);
         player['PC'][5] = 1;
-      }else{
+      }else if (player['PC'][4] == 0){
         herMessage(["(*-.-) stop caring...", '(*._.) ....I just rather not answer okay... if you ask why again...', "(*._.) ...maybe...", "(*v_v) I....", "(*v_v) ...maybe... I'll answer...", "(*v_v) ...maybe..."],5050);
         player['PC'][4] = 1;
       };
-      
+
     }else if (player["PC"][0] == 1 && x[x.length-1] == 'you') {
 
       if (x[x.length-2] == 'help' && player['PC'][1] == 0) {
