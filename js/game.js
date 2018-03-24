@@ -252,9 +252,8 @@ displayHelp = function(x){
 
     }else if (player["PC"][0] == 1 && x[x.length-1] == 'piano'){
       if (player['PC'][5] == 0) {
-        herMessage(["(*-.-) I'm not going to play the piano for you if that's what you're asking."], 2000);
-      };
-      if (player['PC'][5] == 1 && player['PC'][6] == 0) {
+        herMessage(["(*-.-) I'm not going to play the piano for you if that's what you're asking."], 4000);
+      }else if (player['PC'][5] == 1 && player['PC'][6] == 0) {
         herMessage(["(*o.o) .....", "(*-.-) Only this once....", "(*^-^) Volume warning! Might be a lil' loud!"], 3000);
         setTimeout(function(){
           var music = new Audio("snd/pianochords.wav");
