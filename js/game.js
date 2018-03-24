@@ -236,9 +236,15 @@ displayHelp = function(x){
     }else if (player["PC"][0] == 1 && x[x.length-1] == 'you') {
 
       if (x[x.length-2] == 'help' && player['PC'][1] == 0) {
-        player['PC'][1] = 1;
-        herMessage(['(*^-^) How cute of you, thinking I would actually need help from you out of all people.','(*-_-) Are you so vain that you think that you\'d actually be able to help me cope with any of my problems?','...','...','...','(*-#-) Just play the game already.'],3750)
-        player['PC'][3] = 0;
+        if (player['PC'][5] == 1) {
+          herMessage(['(*-.-) You don\'t even really know me all that well.', '(*-.-) At least know me better before you even say something like that, cause that won\'t trick me.'],4750);
+        };
+        if (player['PC'][5] == 0) {
+          player['PC'][1] = 1;
+          herMessage(['(*^-^) How cute of you, thinking I would actually need help from you out of all people.','(*-_-) Are you so vain that you think that you\'d actually be able to help me cope with any of my problems?','...','...','...','(*-#-) Just play the game already.'],3750)
+          player['PC'][3] = 0;
+        };
+
 
       }else if (x[x.length-2] == 'love' && player['PC'][2] == 0) {
         if (x[x.length-3] == 'i') {
