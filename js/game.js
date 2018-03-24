@@ -33,14 +33,14 @@ type = function(text,clss,speed) {
       i = i + 2;
       clearS();
       if (i < textA.length) {
-        setTimeout(loop, speed);
+        window.setTimeout(loop, speed);
       };
     }else{
       mainView.lastChild.innerText += textA[i];
       i++;
       clearS();
       if (i < textA.length) {
-        setTimeout(loop, speed);
+        window.setTimeout(loop, speed);
       };
     };
   };
@@ -207,7 +207,7 @@ herMessage = function(z,t) {
       type(z[i],'PCT',t/x);
       i++;
       clearS();
-      setTimeout(run, x^t);
+      window.setTimeout(run, x^t);
     }else{
       document.getElementById('inputBox').style.display = 'inline-block';
       clearS();
