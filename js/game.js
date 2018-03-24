@@ -2,6 +2,9 @@
 var mainView = document.getElementById('mainView');
 var input = document.getElementById('inputBox').value;
 
+//Sound
+var snd = new Audio("snd/click.wav");
+
 //Clear Input Box and Scroll
 clearS = function() {
   document.getElementById('inputBox').value = '';
@@ -28,7 +31,9 @@ type = function(text,clss,speed) {
   var div = document.createElement('div');
   mainView.appendChild(div).classList.add(clss);
   loop = function() {
+    snd.currentTime=0
     if(textA[i] == ' '){
+      snd.play();
       mainView.lastChild.innerText += textA[i] + textA[i+1];
       i = i + 2;
       clearS();
@@ -36,6 +41,7 @@ type = function(text,clss,speed) {
         setTimeout(loop, speed, true);
       };
     }else{
+      snd.play();
       mainView.lastChild.innerText += textA[i];
       i++;
       clearS();
@@ -231,7 +237,7 @@ herMessage = function(z,t) {
 displayHelp = function(x){
   if (x.length > 1) {
     if (x[x.length-1] == 'me' && player["PC"] == 0) {
-      player["PC"] = [1,0,0,0,0,0];
+      player["PC"] = [1,0,0,0,0,0,0,0];
       herMessage(['(*^-^) Really?',"(*^-^) You have to ask me about commands. That's how this works. Type help then a command.",'(*>v<) Maybe next time you won\'t be so fucking useless...','(*o-o) ...'+player["NAME"]+'... if that even is your real name...'],3750);
 
     }else if (player['PC'][3] == 1 && x[x.length-1] == 'why') {
@@ -244,27 +250,53 @@ displayHelp = function(x){
         player['PC'][4] = 1;
       };
 
+    }else if (player["PC"][0] == 1 && x[x.length-1] == 'piano'){
+      if (player['PC'][5] == 0) {
+        herMessage(["(*-.-) I'm not going to play the piano for you if that's what you're asking."], 2000);
+      };
+      if (player['PC'][5] == 1 && player['PC'][6] == 0) {
+        herMessage(["(*o.o) .....", "(*-.-) Only this once....", "(*^-^) Volume warning! Might be a lil' loud!"], 3000);
+        setTimeout(function(){
+          var music = new Audio("snd/pianochords.wav");
+          music.play();
+        },10000);
+        player['PC'][6] = 1;
+      }else if (player['PC'][6] == 1 && player['PC'][7] == 0) {
+        herMessage(["(*O-o) Wait... What the fuck you liked that???", "(*o-O) ???? I'll play one more thing I guess????", "(*-.-) But no more after this one okay?", "(*v.v) This one isn't as good but.. uh... here..."],3000);
+        setTimeout(function(){
+          var music = new Audio("snd/new.wav");
+          music.play();
+        },13000);
+        player['PC'][7] = 1;
+      }else if (player['PC'][7] == 1) {
+        herMessage(["(*>-<) Sorry but no more pianos!"]);
+      };
+
     }else if (player["PC"][0] == 1 && x[x.length-1] == 'you') {
 
       if (x[x.length-2] == 'help' && player['PC'][1] == 0) {
         if (player['PC'][5] == 1) {
-          herMessage(['(*-.-) You don\'t even really know me all that well.', '(*-.-) At least know me better before you even say something like that, cause that won\'t trick me.'],4750);
-        };
-        if (player['PC'][5] == 0) {
+          herMessage(['(*._.) ....', '(*@.@) ....', '(*-.-\') ...so.... the weather is nice?'],5000);
+        }else {
           player['PC'][1] = 1;
           herMessage(['(*^-^) How cute of you, thinking I would actually need help from you out of all people.','(*-_-) Are you so vain that you think that you\'d actually be able to help me cope with any of my problems?','...','...','...','(*-#-) Just play the game already.'],3750)
           player['PC'][3] = 0;
-        };
-
+        }
 
       }else if (x[x.length-2] == 'love' && player['PC'][2] == 0) {
         if (x[x.length-3] == 'i') {
-          player['PC'][2] = 1;
-          herMessage(['(*-_-) How flattering... Already in love with a girl you\'ve just met.','(*^-^) Are you high?','(*^-^) Or do you just act retarded?','(*^-^) Oh I\'m sorry to hear that your lack of brain cells isn\'t caused by drugs or an accident.','(*^-^) Maybe next time you can back the fuck up and play the game. It really isn\'t that hard.'],4500);
-          player['PC'][3] = 0;
+          if (player['PC'][5] == 1) {
+            herMessage(['(*-.-) You don\'t even really know me all that well.', '(*-.-) At least know me better before you even say something like that, cause that won\'t trick me.'],4750);
+          };
+          if (player['PC'][5] == 0) {
+            player['PC'][2] = 1;
+            herMessage(['(*-_-) How flattering... Already in love with a girl you\'ve just met.','(*^-^) Are you high?','(*^-^) Or do you just act retarded?','(*^-^) Oh I\'m sorry to hear that your lack of brain cells isn\'t caused by drugs or an accident.','(*^-^) Maybe next time you can back the fuck up and play the game. It really isn\'t that hard.'],4500);
+            player['PC'][3] = 0;
+          };
+
         }else {
           addT('Cannot find help for command "' + x[1] + '"','PCT');
-        }
+        };
 
       }else if (x[x.length-2] == 'fuck') {
         herMessage(['(*-^-) ....', '(*oAo) DON\'T BE SUCH A LITTLE FUCKING SHIT','(*oAo) YOU THINK I\'M HERE FOR FUN YOU LITTLE SHIT?','(*oAo) DO YOU THINK LITTLE MISS ----- WANTED THIS FUCKING LIFE, HUH?', '(*O<o) BET YOU NEVER FUCKING THOUGHT ABOUT THAT SO FUCK YOU!','(*-_-) ...sheesh... you\'re getting my CPU heated...'],3000);
@@ -286,7 +318,7 @@ displayHelp = function(x){
       addT('Cannot find help for command "' + x[1] + '"','PCT');
     }
 
-  }else {
+  }else{
     addT("Here are some things you can type!",'PCT');
     addT(Object.keys(aHelp).toString().split(',').join(', '), 'PCT');
   }
