@@ -299,3 +299,4 @@ processInput = function(x) {
     displayInventory();
   };
 };
+window.onLoad(alert("all code has been fully loaded. Please proceed."));
