@@ -1,0 +1,71 @@
+@font-face {
+  font-family: retro;
+  src: url(type.ttf);
+}
+html ,body {
+  background-color: black;
+  color: white;
+  font-family: retro;
+  font-size: 1.4em;
+  font-weight: lighter;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+#main {
+  margin-left: 1%;
+  height: 100%;
+}
+#mainView {
+  height: 85%;
+  overflow-y: hidden;
+  display: block;
+}
+#mainView:hover {
+  overflow-y: scroll;
+}
+.userT{
+  padding-left: 0.25em;
+}
+.userT, .PCT {
+  width: 50%;
+}
+form {
+  width: 100%;
+  position: fixed;
+  bottom: 0.5em;
+  background: black;
+  border-top: white solid 2px;
+}
+#inputBox, #inputBox:focus {
+  border: none;
+  background: none;
+  width: 98%;
+  outline-width: 0;
+  font-size: 1em;
+  font-family: retro;
+  color: white;
+}
+::-webkit-scrollbar {
+    width: 0.25em;
+}
+::-webkit-scrollbar-thumb {
+    background: white;
+}
+@media (max-width: 980px) {
+  html, body {
+    font-size: 2em;
+  }
+  ::-webkit-scrollbar {
+      width: 0.1em;
+  }
+  .userT, .PCT {
+    width: 95%;
+  }
+  #mainView {
+    overflow-y: scroll;
+  }
+  #inputBox, #inputBox:focus {
+    width: 96%;
+  }
+}
