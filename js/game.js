@@ -269,6 +269,7 @@ displayHelp = function(x){
         player['PC'][7] = 1;
       }else if (player['PC'][7] == 1) {
         herMessage(["(*>-<) Sorry but no more pianos!"]);
+        player['PC'][7] = 2;
       };
 
     }else if (player["PC"][0] == 1 && x[x.length-1] == 'you') {
@@ -296,6 +297,9 @@ displayHelp = function(x){
         }else {
           addT('Cannot find help for command "' + x[1] + '"','PCT');
         };
+      }else if (x[x.length-2] == 'thank' && player['PC'][7] == 1) {
+        herMessage(['(*0u0) no need to do that, but thank YOU for being kind to me!']);
+        player['PC'][7] = 2;
 
       }else if (x[x.length-2] == 'fuck') {
         herMessage(['(*-^-) ....', '(*oAo) DON\'T BE SUCH A LITTLE FUCKING SHIT','(*oAo) YOU THINK I\'M HERE FOR FUN YOU LITTLE SHIT?','(*oAo) DO YOU THINK LITTLE MISS ----- WANTED THIS FUCKING LIFE, HUH?', '(*O<o) BET YOU NEVER FUCKING THOUGHT ABOUT THAT SO FUCK YOU!','(*-_-) ...sheesh... you\'re getting my CPU heated...'],3000);
